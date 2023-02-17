@@ -4,7 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan"); // affiche des logs de connexion
 
-
+//todo gérer encodage
+// const encoder = new TextEncoder();
+// const utf8Arr = encoder.encode('😎');
+// console.log(utf8Arr); // 240 159 152 142
 
 //* création du serveur
 const app = express();
@@ -28,23 +31,24 @@ app.use(cors()); //* le module cors permet d'autoriser ou non les demandes prove
 
 // connectDatabase();
 
-
-
 //! import des routes
 const characters = require("./routes/characters");
+const comics = require("./routes/comics");
 
 //! utiliser les routes
 app.use(characters);
+app.use(comics);
 
 
 app.get("/", (req, res) => {
-    res.json("👩‍💻 Bienvenue sur l'API myMARVEL d'Audrey 👾");
+    res.json("👩‍💻 Bienvenue sur l'API myMARVEL d'Audrey 🔥");
 });
 
 app.all("*", (req, res) => {
-    res.status(404).json({ message: "⚠️ This route doesn't exist !!! ⚠️" });
+    res.status(404).json({ message: "⚠️ This route doesn't exist ! ( ´•̥×•̥` )" });
 });
 
 app.listen(process.env.PORT || 3100, () => {
-    console.log(" 🚀 Server started !!! 🚀");
+    console.log("(๑•͈ᴗ•͈)  ├┬┴┬┴ Server started ┬┴┬┴┤  🚀 ")
 });
+

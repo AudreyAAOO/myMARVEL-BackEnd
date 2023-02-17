@@ -1,17 +1,28 @@
 const express = require("express"); //? import de express
-
+const axios = require("axios");
 
 const router = express.Router(); //? déclarer les routes
 
 
 
-//! CREATE
-//todo création d'une route pour afficher la liste des characters
-// url https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=oDmTWBclqCsvDU7K
-router.get("https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=oDmTWBclqCsvDU7K", (req, res) => {
+/*! -- list of character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
+router.get("/characters", async (req, res) => {
     try {
-        console.log(res);
-        console.log(req);
+
+        const response = await axios.get(
+            `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY_MARVEL}&name=${name}&description=${description}&skip=${skip}&limit=${limit}`
+        );
+
+        const name = req.query.name || "";
+        const description = req.query.description || "";
+        const limit = Number(req.query.limit) || "100";
+
+        const skip = (req.query.skip - 1) * limit || "0";
+        //console.log(response.data);
+
+        res.status(200).json(response.data);
+
+
     }
     catch (error) {
         console.log(error.message);
@@ -19,6 +30,16 @@ router.get("https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=oDmTWB
     }
 
 });
+
+
+
+//todo 
+/*! -- infos of a specific character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
+// Route : /character/:characterId
+// router.get(""), (req, res)=> {
+// console.log("i'm here");
+// }
+
 
 //! export de mes routes
 module.exports = router;
