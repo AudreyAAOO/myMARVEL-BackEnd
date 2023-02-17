@@ -39,7 +39,6 @@ const comics = require("./routes/comics");
 app.use(characters);
 app.use(comics);
 
-
 app.get("/", (req, res) => {
     res.json("👩‍💻 Bienvenue sur l'API myMARVEL d'Audrey 🔥");
 });

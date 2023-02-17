@@ -8,17 +8,18 @@ const router = express.Router(); //? déclarer les routes
 /*! -- list of character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
 router.get("/characters", async (req, res) => {
     try {
+        const name = req.query.name || "";
+        const description = req.query.description || "";
+        const limit = Number(req.query.limit) || 100;
+
+        const skip = (req.query.skip - 1) * limit || 0;
+        //console.log(response.data);
 
         const response = await axios.get(
             `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY_MARVEL}&name=${name}&description=${description}&skip=${skip}&limit=${limit}`
         );
 
-        const name = req.query.name || "";
-        const description = req.query.description || "";
-        const limit = Number(req.query.limit) || "100";
 
-        const skip = (req.query.skip - 1) * limit || "0";
-        //console.log(response.data);
 
         res.status(200).json(response.data);
 
