@@ -9,6 +9,8 @@ router.get("/comics", async (req, res) => {
 
     try {
         const title = req.query.title || "";
+
+
         const response = await axios.get(
             `https://lereacteur-marvel-api.herokuapp.com/comics?title=${title}&apiKey=${process.env.API_KEY_MARVEL}`
         );
@@ -28,20 +30,19 @@ router.get("/comics", async (req, res) => {
 
 //! list of comics containing specific character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
 router.get("/comics/:characterId", async (req, res) => {
-    if (req.params.characterId !== null) {
-        try {
+    // if (req.params.characterId !== null) {
+    try {
 
+        const response = await axios.get(
+            `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+        );
+        res.status(200).json(response.data);
+    } catch (error) {
 
-            const response = await axios.get(
-                `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
-            );
-            res.status(200).json(response.data);
-        } catch (error) {
-            console.log(error.message);
-            res.status(400).json({ message: error.message });
-        }
-
+        res.status(400).json({ message: error.message });
+        console.log(error.message);
     }
+    // }
 });
 
 

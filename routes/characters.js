@@ -19,10 +19,13 @@ router.get("/characters", async (req, res) => {
         const response = await axios.get(
             `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY_MARVEL}&name=${name}&skip=${skip}&limit=${limit}`
         );
+
+
         res.status(200).json(response.data);
     } catch (error) {
-        console.log(error.message);
+
         res.status(400).json({ message: error.message });
+        console.log(error.message);
     }
 
 });
@@ -40,11 +43,12 @@ router.get("/character/:characterId", async (req, res) => {
 
                 `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
             );
-            console.log("test");
+
             res.status(200).json(response.data);
         } catch (error) {
-            console.log(error.message);
+
             res.status(400).json({ message: error.message });
+            console.log(error.message);
         }
 
     }
