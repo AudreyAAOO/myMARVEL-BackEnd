@@ -25,7 +25,7 @@ router.get("/characters", async (req, res) => {
     } catch (error) {
 
         res.status(400).json({ message: error.message });
-        console.log(error.message);
+        console.log(error.response);
     }
 
 });
