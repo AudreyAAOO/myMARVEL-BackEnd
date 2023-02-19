@@ -1,57 +1,25 @@
-const express = require("express"); //? import de express
+const express = require("express");
 const axios = require("axios");
 
-const router = express.Router(); //? déclarer les routes
-
+const router = express.Router(); 
 
 
 /*! -- list of character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
 router.get("/characters", async (req, res) => {
     try {
-
         const name = req.query.name || "";
-        //const description = req.query.description || "";&description=${description}
         const limit = req.query.limit || 100;
         const skip = req.query.skip || 0;
-        //console.log(response.data);
 
         const response = await axios.get(
             `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY_MARVEL}&name=${name}&skip=${skip}&limit=${limit}`
         );
-
         res.status(200).json(response.data);
     } catch (error) {
-
         res.status(400).json({ message: error.message });
         console.log(error.response);
     }
-
 });
 
 
-
-//todo 
-/*! -- infos of a specific character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
-// Route : /character/:characterId
-
-router.get("/character/:characterId", async (req, res) => {
-    if (req.params.characterId !== null) {
-        try {
-            const response = await axios.get(
-
-                `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
-            );
-
-            res.status(200).json(response.data);
-        } catch (error) {
-
-            res.status(400).json({ message: error.message });
-            console.log(error.message);
-        }
-
-    }
-});
-
-
-//! export de mes routes
 module.exports = router;

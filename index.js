@@ -1,45 +1,34 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
-const morgan = require("morgan"); // affiche des logs de connexion
+const morgan = require("morgan");
+// const mongoose = require("mongoose");
 
-//todo gérer encodage
-// const encoder = new TextEncoder();
-// const utf8Arr = encoder.encode('😎');
-// console.log(utf8Arr); // 240 159 152 142
-
-//* création du serveur
 const app = express();
 
-
-app.use(express.json());//* récupérer les paramètres de type Body
+app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors()); //* le module cors permet d'autoriser ou non les demandes provenant de l'extérieur.
+app.use(cors());
 
-//* se connecter à la BDD
-const connectDatabase = async () => {
-    try {
-        mongoose.set("strictQuery", false);
-        await mongoose.connect(process.env.MONGODB_URI); // Pour se connecter à la BDD, sans préciser les identifiants
-        console.log("connected to database 🗃️ ");
-    } catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-};
-
-connectDatabase();
+//todo se connecter à la BDD
+// const connectDatabase = async () => {
+//     try {
+//         mongoose.set("strictQuery", false);
+//         await mongoose.connect(process.env.MONGODB_URI); 
+//         console.log("connected to database 🗃️ ");
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+// connectDatabase();
 
 //! import des routes
 const characters = require("./routes/characters");
 const comics = require("./routes/comics");
-const favorites = require("./routes/favorites");
 
 //! utiliser les routes
 app.use(characters);
 app.use(comics);
-app.use(favorites);
 
 
 app.get("/", (req, res) => {
