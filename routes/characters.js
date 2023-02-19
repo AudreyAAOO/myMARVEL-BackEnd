@@ -10,7 +10,7 @@ router.get("/characters", async (req, res) => {
     try {
 
         const name = req.query.name || "";
-        // const description = req.query.description || "";&description=${description}
+        //const description = req.query.description || "";&description=${description}
         const limit = req.query.limit || 100;
         const skip = req.query.skip || 0;
         //console.log(response.data);

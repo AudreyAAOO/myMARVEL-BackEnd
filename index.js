@@ -18,26 +18,29 @@ app.use(morgan("dev"));
 app.use(cors()); //* le module cors permet d'autoriser ou non les demandes provenant de l'extérieur.
 
 //* se connecter à la BDD
-// const connectDatabase = async () => {
-//     try {
-//         mongoose.set("strictQuery", false);
-//         await mongoose.connect(process.env.MONGODB_URI); // Pour se connecter à la BDD, sans préciser les identifiants
-//         console.log("connected to database 🗃️ ");
-//     } catch (error) {
-//         console.log(error);
-//         process.exit(1);
-//     }
-// };
+const connectDatabase = async () => {
+    try {
+        mongoose.set("strictQuery", false);
+        await mongoose.connect(process.env.MONGODB_URI); // Pour se connecter à la BDD, sans préciser les identifiants
+        console.log("connected to database 🗃️ ");
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+};
 
-// connectDatabase();
+connectDatabase();
 
 //! import des routes
 const characters = require("./routes/characters");
 const comics = require("./routes/comics");
+const favorites = require("./routes/favorites");
 
 //! utiliser les routes
 app.use(characters);
 app.use(comics);
+app.use(favorites);
+
 
 app.get("/", (req, res) => {
     res.json("👩‍💻 Bienvenue sur l'API myMARVEL d'Audrey 🔥");
