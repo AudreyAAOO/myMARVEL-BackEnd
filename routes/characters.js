@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 
-const router = express.Router(); 
+const router = express.Router();
 
 
 /*! -- list of character --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
@@ -20,6 +20,26 @@ router.get("/characters", async (req, res) => {
         console.log(error.response);
     }
 });
+
+
+/*! -- list of character by id --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
+router.get("/character/:characterId", async (req, res) => {
+    try {
+        const response = await axios.get(
+            // `https://lereacteur-marvel-api.herokuapp.com/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+
+            `https://127.0.0.1/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+
+        );
+        res.status(200).json(response.data);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+        console.log(error.response);
+    }
+});
+
+
+
 
 
 module.exports = router;
