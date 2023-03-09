@@ -28,9 +28,10 @@ router.get("/character/:characterId", async (req, res) => {
         const response = await axios.get(
             // `https://lereacteur-marvel-api.herokuapp.com/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
 
-            `https://127.0.0.1/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+            `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
 
         );
+        // console.log(response.data);
         res.status(200).json(response.data);
     } catch (error) {
         res.status(400).json({ message: error.message });
