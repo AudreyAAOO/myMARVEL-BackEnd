@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config(); // Permet d'activer les variables d'environnement qui se trouvent dans le fichier `.env`
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -6,7 +6,7 @@ const morgan = require("morgan");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); //* récupérer les paramètres de type Body
 app.use(morgan("dev"));
 app.use(cors());
 
@@ -25,10 +25,12 @@ app.use(cors());
 //! import des routes
 const characters = require("./routes/characters");
 const comics = require("./routes/comics");
+const favorites = require("./routes/favorites");
 
 //! utiliser les routes
 app.use(characters);
 app.use(comics);
+app.use(favorites);
 
 
 app.get("/", (req, res) => {

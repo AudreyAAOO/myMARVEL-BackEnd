@@ -22,25 +22,31 @@ router.get("/characters", async (req, res) => {
 });
 
 
-/*! -- list of character by id --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
-router.get("/character/:characterId", async (req, res) => {
-    try {
-        const response = await axios.get(
-            // `https://lereacteur-marvel-api.herokuapp.com/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+// /*! -- list of character by id --★゜・。。・゜゜・。。・゜☆゜・。。・゜゜・。。・゜★゜・。。・゜゜・。。・゜☆ */
+// router.get("/character/:characterId", async (req, res) => {
+//     try {
+//         const response = await axios.get(
+//             // `https://lereacteur-marvel-api.herokuapp.com/characters/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
 
-            `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
+//             `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.API_KEY_MARVEL}`
 
-        );
-        // console.log(response.data);
-        res.status(200).json(response.data);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-        console.log(error.response);
-    }
-});
+//         );
+//         // console.log(response.data);
+//         res.status(200).json(response.data);
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//         console.log(error.response);
+//     }
+// });
 
 
+//! faire une nouvelle route et passer la liste des favoris en body
+// boucler dessus 
+// fr une requete en front sur chaque tour de boucler
+// vérifier longueur du tableau pr savoir si ya toutes les réponses
 
+// si comics en plus , on peut faire une même route pr les characters et comics
+// juste ajouter un body en plus
 
 
 module.exports = router;
