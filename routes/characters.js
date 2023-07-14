@@ -37,13 +37,5 @@ router.get("/characters", async (req, res) => {
 // });
 
 
-//! faire une nouvelle route et passer la liste des favoris en body
-// boucler dessus 
-// fr une requete en front sur chaque tour de boucler
-// vérifier longueur du tableau pr savoir si ya toutes les réponses
-
-// si comics en plus , on peut faire une même route pr les characters et comics
-// juste ajouter un body en plus
-
 
 module.exports = router;
