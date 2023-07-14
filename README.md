@@ -14,7 +14,3 @@ ou à visiter à l'adresse [https://my-marvel-awesome-website.netlify.app/](http
 - barre de recherche
 - loader avec react-epic-spinners
 - gestion des favoris en localStorage et réaffichage de ceux-ci
- 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-![Screen_Marvel](/src/assets/img/Screen_Marvel.png "capture d'écran du projet")
